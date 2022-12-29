@@ -4,8 +4,12 @@
  */
 require('dotenv').config();
 
-
 const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const { debug } = require('node:console');
+
+
 const app = express();
 
 app.get('/*', function(req, res,next){
@@ -20,16 +24,10 @@ app.get('/*', function(req, res,next){
   return next();
 });
 
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const { debug } = require('node:console');
 
 const redis = require('./configs/redis');
 const { tokenCheck } = require('./middlewares/tokenCheck');
 const { exit } = require('node:process');
-
-
-
 const crypto = require('crypto')
 //const md5 = require('md5');
 
