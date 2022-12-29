@@ -5,6 +5,8 @@
 require('dotenv').config();
 
 const express = require('express');
+const app = express();
+
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { debug } = require('node:console');
@@ -13,7 +15,7 @@ const redis = require('./configs/redis');
 const { tokenCheck } = require('./middlewares/tokenCheck');
 const { exit } = require('node:process');
 
-const app = express();
+
 
 const crypto = require('crypto')
 //const md5 = require('md5');
