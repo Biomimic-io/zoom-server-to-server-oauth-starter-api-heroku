@@ -3,6 +3,9 @@
  * never expose this .env file publicly
  */
 require('dotenv').config();
+
+
+const express = require('express');
 const app = express();
 
 app.get('/*', function(req, res,next){
@@ -17,7 +20,6 @@ app.get('/*', function(req, res,next){
   return next();
 });
 
-const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { debug } = require('node:console');
