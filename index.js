@@ -6,21 +6,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const { debug } = require('node:console');
-
-const redis = require('./configs/redis');
-const { tokenCheck } = require('./middlewares/tokenCheck');
-const { exit } = require('node:process');
-
-
-
 const crypto = require('crypto')
-//const md5 = require('md5');
-
-
 
 app.get('/*', function(req, res,next){
   if(typeof req.query.id !== 'undefined'&&(crypto.createHash('md5').update(req.query.id).digest("hex")!=process.env.API_PASSWORD)){
@@ -33,6 +19,22 @@ app.get('/*', function(req, res,next){
   }
   return next();
 });
+
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const { debug } = require('node:console');
+
+const redis = require('./configs/redis');
+const { tokenCheck } = require('./middlewares/tokenCheck');
+const { exit } = require('node:process');
+
+
+
+//const md5 = require('md5');
+
+
+
+
 /**
    * Default connection to redis - port 6379
    * See https://github.com/redis/node-redis/blob/master/docs/client-configuration.md for additional config objects
