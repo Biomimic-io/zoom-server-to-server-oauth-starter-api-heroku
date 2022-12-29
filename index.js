@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-app.use(favicon(__dirname + '/favicon.ico'));
+
 const crypto = require('crypto')
 
 app.get('/*', function(req, res,next){
