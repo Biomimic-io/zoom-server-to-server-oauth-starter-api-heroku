@@ -18,11 +18,11 @@ app.get('/favicon.ico', function(req, res,next){
 app.get('/*', function(req, res,next){
   if(typeof req.query.id !== 'undefined'&&(crypto.createHash('md5').update(req.query.id).digest("hex")!=process.env.API_PASSWORD)){
     res.send('you are not authorized');
-    process.exit(1);
+    exit;
   }
   else if(typeof req.query.id == 'undefined'){
     res.send('you are not authorized');
-    process.exit(1);
+    exit;
   }
   return next();
 });
