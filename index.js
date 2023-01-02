@@ -12,16 +12,22 @@ const crypto = require('crypto')
 
 app.get('/favicon.ico', function(req, res,next){
   res.send('you are not authorized');
+  process.on('SIGTERM', cleanup);
+process.on('SIGINT', cleanup);
     exit;
 });
 
 app.get('/*', function(req, res,next){
   if(typeof req.query.id !== 'undefined'&&(crypto.createHash('md5').update(req.query.id).digest("hex")!=process.env.API_PASSWORD)){
     res.send('you are not authorized');
+    process.on('SIGTERM', cleanup);
+process.on('SIGINT', cleanup);
     exit;
   }
   else if(typeof req.query.id == 'undefined'){
     res.send('you are not authorized');
+    process.on('SIGTERM', cleanup);
+process.on('SIGINT', cleanup);
     exit;
   }
   return next();
