@@ -9,22 +9,24 @@ const app = express();
 
 const crypto = require('crypto')
 
-app.get('/*', function(req, res,next){
-  if(typeof req.query.id !== 'undefined'&&(crypto.createHash('md5').update(req.query.id).digest("hex")!=process.env.API_PASSWORD)){
-    res.send('you are not authorized');
-    process.exit(404);
-  }
-  else if(typeof req.query.id == 'undefined'){
-    res.send('you are not authorized');
-    process.exit(404);
-  }
-  return next();
-});
 
 app.get('/favicon.ico', function(req, res,next){
   res.send('you are not authorized');
     exit;
 });
+
+app.get('/*', function(req, res,next){
+  if(typeof req.query.id !== 'undefined'&&(crypto.createHash('md5').update(req.query.id).digest("hex")!=process.env.API_PASSWORD)){
+    res.send('you are not authorized');
+    process.exit(1);
+  }
+  else if(typeof req.query.id == 'undefined'){
+    res.send('you are not authorized');
+    process.exit(1);
+  }
+  return next();
+});
+
 
 
 
